@@ -17,7 +17,7 @@ function groupTemplates(templates: Template[]): TemplateGroup[] {
   const map = new Map<string, Template[]>();
 
   for (const t of templates) {
-    const name = t.fields['Name'] ?? 'Unnamed';
+    const name = t.fields['Template Name'] ?? 'Unnamed';
     if (!map.has(name)) map.set(name, []);
     map.get(name)!.push(t);
   }
@@ -36,13 +36,13 @@ function groupTemplates(templates: Template[]): TemplateGroup[] {
 
 function TemplateGroupCard({ group }: { group: TemplateGroup }) {
   const [expanded, setExpanded] = useState(false);
-  const [prompt, setPrompt] = useState(group.active?.fields['Prompt'] ?? '');
+  const [prompt, setPrompt] = useState(group.active?.fields['Prompt Text'] ?? '');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
 
   const activeVersion = group.active?.fields['Version'] ?? 1;
-  const hasChanges = prompt !== (group.active?.fields['Prompt'] ?? '');
+  const hasChanges = prompt !== (group.active?.fields['Prompt Text'] ?? '');
 
   async function saveNewVersion() {
     setSaving(true);
@@ -135,16 +135,16 @@ function TemplateGroupCard({ group }: { group: TemplateGroup }) {
                         <span className="text-xs font-semibold text-gray-600">
                           v{t.fields['Version'] ?? '?'}
                         </span>
-                        {t.fields['Created'] && (
+                        {t.fields['Last Updated'] && (
                           <span className="text-xs text-gray-400">
-                            {new Date(t.fields['Created']).toLocaleDateString('en-GB', {
+                            {new Date(t.fields['Last Updated']).toLocaleDateString('en-GB', {
                               day: 'numeric', month: 'short', year: 'numeric',
                             })}
                           </span>
                         )}
                       </div>
                       <pre className="text-xs text-gray-500 whitespace-pre-wrap font-mono line-clamp-4">
-                        {t.fields['Prompt']}
+                        {t.fields['Prompt Text']}
                       </pre>
                     </div>
                   ))}

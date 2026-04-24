@@ -105,12 +105,14 @@ export interface Article {
 }
 
 export interface TemplateFields {
-  'Name'?: string;
-  'Prompt'?: string;
+  'Template Name'?: string;
+  'Prompt Text'?: string;
   'Active'?: boolean;
   'Version'?: number;
-  'Created'?: string;
-  'Last Modified'?: string;
+  'Article Type'?: string;
+  'Risk Level'?: string;
+  'Last Change Notes'?: string;
+  'Last Updated'?: string;
 }
 
 export interface Template {

@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
 
   // Create new active version
   const template = await createTemplate({
-    Name: name,
-    Prompt: prompt,
+    'Template Name': name,
+    'Prompt Text': prompt,
     Active: true,
     Version: version ?? 1,
   });
