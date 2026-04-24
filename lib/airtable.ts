@@ -163,7 +163,7 @@ export async function getRevisionHistory(recordId: string): Promise<RevisionHist
 // ─── Templates ───────────────────────────────────────────────────────────────
 
 export async function getTemplates(): Promise<AirtableListResponse<Template>> {
-  return airtableFetch(`/${BASE_ID}/${TEMPLATES_TABLE}?sort[0][field]=Name&sort[0][direction]=asc`);
+  return airtableFetch(`/${BASE_ID}/${TEMPLATES_TABLE}?sort[0][field]=Template%20Name&sort[0][direction]=asc`);
 }
 
 export async function getTemplate(recordId: string): Promise<Template> {
