@@ -81,6 +81,13 @@ function ArticleCard({ article, onAction }: {
   const { fields, id } = article;
   const status = fields['Status'] ?? '';
   const [loading, setLoading] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  async function handleDelete() {
+    setLoading('delete');
+    await fetch(`/api/articles/${id}`, { method: 'DELETE' });
+    onAction();
+  }
 
   async function patch(newStatus: string, extra?: Record<string, unknown>) {
     setLoading(newStatus);
@@ -116,12 +123,38 @@ function ArticleCard({ article, onAction }: {
             )}
           </div>
         </div>
-        <Link
-          href={`/articles/${id}`}
-          className="text-xs text-gray-400 hover:text-gray-600 shrink-0 transition-colors"
-        >
-          Open →
-        </Link>
+        <div className="flex items-center gap-2 shrink-0">
+          <Link
+            href={`/articles/${id}`}
+            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            Open →
+          </Link>
+          {confirmDelete ? (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={handleDelete}
+                disabled={loading === 'delete'}
+                className="text-xs font-medium text-red-600 hover:text-red-800 transition-colors"
+              >
+                {loading === 'delete' ? 'Deleting…' : 'Confirm'}
+              </button>
+              <button
+                onClick={() => setConfirmDelete(false)}
+                className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => setConfirmDelete(true)}
+              className="text-xs text-gray-300 hover:text-red-500 transition-colors"
+            >
+              Delete
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Step bar */}

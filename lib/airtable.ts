@@ -91,6 +91,10 @@ export async function createArticle(fields: Partial<ArticleFields>): Promise<Art
   });
 }
 
+export async function deleteArticle(recordId: string): Promise<void> {
+  await airtableFetch(`/${BASE_ID}/${ARTICLES_TABLE}/${recordId}`, { method: 'DELETE' });
+}
+
 // ─── Attention queue ─────────────────────────────────────────────────────────
 
 export async function getAttentionQueue(): Promise<Article[]> {
