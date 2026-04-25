@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { Article, RevisionHistory, Status } from '@/lib/types';
 import DraftPreview from './DraftPreview';
 import NlpCoverage from './NlpCoverage';
+import CategorySelector from './CategorySelector';
 import {
   countWords,
   getWordCountStatus,
@@ -675,6 +676,13 @@ export default function ArticleDetail({
                   loading={loading}
                   onPatchStatus={patchStatus}
                   onSaveField={saveField}
+                />
+
+                <div className="border-t border-gray-200" />
+
+                <CategorySelector
+                  value={article.fields['WP Category IDs'] ?? ''}
+                  onSave={v => saveField('WP Category IDs', v)}
                 />
               </>
             )}

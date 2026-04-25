@@ -12,6 +12,7 @@ interface NavItem {
 
 const EDITOR_NAV: NavItem[] = [
   { href: '/dashboard', label: 'Dashboard' },
+  { href: '/pipeline', label: 'Pipeline' },
   { href: '/articles', label: 'Articles' },
   { href: '/images', label: 'Images' },
   { href: '/prompts', label: 'Prompts' },

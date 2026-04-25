@@ -91,6 +91,7 @@ export interface ArticleFields {
   // Publishing
   'WP Post URL'?: string;
   'WP Post ID'?: number;
+  'WP Category IDs'?: string;
   'Published Date'?: string;
 
   // System

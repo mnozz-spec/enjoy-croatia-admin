@@ -84,6 +84,13 @@ export async function setArticleStatus(
   return updateArticle(recordId, { Status: status, ...extraFields });
 }
 
+export async function createArticle(fields: Partial<ArticleFields>): Promise<Article> {
+  return airtableFetch(`/${BASE_ID}/${ARTICLES_TABLE}`, {
+    method: 'POST',
+    body: JSON.stringify({ fields }),
+  });
+}
+
 // ─── Attention queue ─────────────────────────────────────────────────────────
 
 export async function getAttentionQueue(): Promise<Article[]> {
