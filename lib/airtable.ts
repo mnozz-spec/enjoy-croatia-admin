@@ -116,7 +116,7 @@ export async function getAwaitingImagesArticles(): Promise<Article[]> {
   const res = await getArticles({
     filterByFormula: `{Status}='awaiting-images'`,
     sort: [{ field: 'Created', direction: 'asc' }],
-    fields: ['Title', 'Voice', 'Image Brief', 'Status', 'Article ID', 'Keyword'],
+    fields: ['Title', 'Voice', 'Image Brief', 'Status', 'Keyword'],
   });
   return res.records;
 }
