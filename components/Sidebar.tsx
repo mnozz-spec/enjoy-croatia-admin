@@ -15,6 +15,7 @@ const EDITOR_NAV: NavItem[] = [
   { href: '/articles', label: 'Articles' },
   { href: '/images', label: 'Images' },
   { href: '/prompts', label: 'Prompts' },
+  { href: '/workflows', label: 'Workflows' },
   { href: '/health', label: 'Health' },
 ];
 
